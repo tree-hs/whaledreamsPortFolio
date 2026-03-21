@@ -51,8 +51,10 @@ function AboutSection() {
   return (
     <section id="about" className="about-section">
       <div className="about__title">
-        <h2 className="section__title">WHALE DREAMS</h2>
-        <span className="section__title-accent">TOTAL DISITAL DESIGN AGENCY</span>
+        <h2 className="section__title">
+          Hs portfolio
+        </h2>
+        <span className="section__title-accent">Frontend Developer</span>
       </div>
       <div className="about__content">
         <div className="about__text">
@@ -62,18 +64,6 @@ function AboutSection() {
               <col style={{ width: "70%" }} />
             </colgroup>
             <tbody>
-            <tr>
-              <th>대표</th>
-              <td>정한석</td>
-            </tr>
-            <tr>
-              <th>설립일</th>
-              <td>2022.01.12</td>
-            </tr>
-            <tr>
-              <th>사업분야</th>
-              <td>디지털 통합에이전시</td>
-            </tr>
             <tr>
               <th>연락처</th>
               <td>010-3268-2612</td>

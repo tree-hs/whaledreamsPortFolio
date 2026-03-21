@@ -285,7 +285,7 @@ button {
 
 .about__title {
   margin-bottom: 60px;
-  // display: flex;
+  display: flex;
   gap: 40px;
   align-items: flex-end;
   @media (max-width: 768px) {
@@ -576,7 +576,7 @@ section {
 }
 
 .about-section {
-  margin: 120px;
+  margin: 300px 0;
   
   @media (max-width: 768px) {
     margin: 80px 15px;
