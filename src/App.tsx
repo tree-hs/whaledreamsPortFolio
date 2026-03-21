@@ -51,32 +51,43 @@ function AboutSection() {
   return (
     <section id="about" className="about-section">
       <div className="about__title">
-        <h2 className="section__title">
-          React portfolio
-        </h2>
-        <span className="section__title-accent">Frontend developer</span>
+        <h2 className="section__title">WHALE DREAMS</h2>
+        <span className="section__title-accent">TOTAL DISITAL DESIGN AGENCY</span>
       </div>
       <div className="about__content">
         <div className="about__text">
-          <p>
-            이것 저것 해보긴 했는데 퍼블리셔 포지션으로만 경력을 쌓아서
-            퍼블리싱 외 대다수 stack은 초급이라 생각해서 초급이라 했습니다.
-          </p>
-          <p>
-            현재는 React와 TypeScript를 활용한 프론트엔드 개발에 집중하고 있으며,
-            사용자 경험을 개선하고 접근성을 고려한 웹 애플리케이션을 만드는 것을 좋아합니다.
-          </p>
-          <p>주로 사용하는 기술 스택:</p>
-          <ul className="about__skills">
-            <li>JavaScript</li>
-            <li>Html</li>
-            <li>Css</li>
-            <li>TypeScript</li>
-            <li>Jquery</li>
-            <li>React</li>
-            <li>Php</li>
-            <li>MySQL</li>
-          </ul>
+          <table style={{marginBottom:"24px"}}>
+            <colgroup>
+              <col style={{ width: "30%" }} />
+              <col style={{ width: "70%" }} />
+            </colgroup>
+            <tbody>
+            <tr>
+              <th>대표</th>
+              <td>정한석</td>
+            </tr>
+            <tr>
+              <th>설립일</th>
+              <td>2022.01.12</td>
+            </tr>
+            <tr>
+              <th>사업분야</th>
+              <td>디지털 통합에이전시</td>
+            </tr>
+            <tr>
+              <th>연락처</th>
+              <td>010-3268-2612</td>
+            </tr>
+            <tr>
+              <th>홈페이지</th>
+              <td><a href="https://whaledreams.co.kr" target="_blank" rel="noopener noreferrer">https://whaledreams.co.kr</a></td>
+            </tr>
+            <tr>
+              <th>포트폴리오</th>
+              <td><a href="https://tree-hs.github.io/whaledreamsPortFolio/" target="_blank" rel="noopener noreferrer">https://tree-hs.github.io/whaledreamsPortFolio/</a></td>
+            </tr>
+            </tbody>
+          </table>
           <a href="#projects" className="about__cta">
             View services
           </a>
