@@ -1,0 +1,315 @@
+@use "./palette.legacy" as pal;
+@use "sass:map";
+@use "sass:list";
+
+/* =========================
+   1) THEME VARS (only vars)
+   ========================= */
+@mixin emit-css-vars($palette) {
+  @each $name, $value in $palette {
+    --#{$name}: #{$value};
+  }
+}
+
+:root {
+  @include emit-css-vars(pal.$palette-light);
+
+  --bg: var(--gray50);
+  --fg: var(--gray900);
+  --muted: var(--gray500);
+  --border: var(--gray200);
+
+  --primary: var(--blue600);
+  --primary-fg: var(--white);
+
+  --success: var(--green500);
+  --success-fg: var(--white);
+
+  --danger: var(--red400);
+  --danger-fg: var(--white);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include emit-css-vars(pal.$palette-dark);
+
+    --bg: var(--gray50);
+    --fg: var(--gray900);
+    --muted: var(--gray500);
+    --border: var(--gray200);
+
+    --primary: var(--blue500);
+    --primary-fg: var(--black);
+
+    --success: var(--green500);
+    --success-fg: var(--black);
+
+    --danger: var(--red400);
+    --danger-fg: var(--black);
+  }
+}
+
+html[data-theme="light"] {
+  @include emit-css-vars(pal.$palette-light);
+}
+html[data-theme="dark"] {
+  @include emit-css-vars(pal.$palette-dark);
+}
+
+/* =========================
+   2) COLOR UTILITIES (once)
+   - utilities use var(--x)
+   ========================= */
+$palette-keys: map.keys(pal.$palette-light);
+
+@mixin border-utils($name) {
+  .bd-#{$name} {
+    border: 1px solid var(--#{$name});
+  }
+  .bdt-#{$name} {
+    border-top: 1px solid var(--#{$name});
+  }
+  .bdb-#{$name} {
+    border-bottom: 1px solid var(--#{$name});
+  }
+  .bdl-#{$name} {
+    border-left: 1px solid var(--#{$name});
+  }
+  .bdr-#{$name} {
+    border-right: 1px solid var(--#{$name});
+  }
+}
+
+@each $name in $palette-keys {
+  .#{$name} {
+    color: var(--#{$name});
+  }
+  .bg-#{$name} {
+    background-color: var(--#{$name});
+  }
+  @include border-utils($name);
+}
+
+/* border reset (중복 제거) */
+.bdn {
+  border: none;
+}
+.bdn_ipt {
+  border: none !important;
+}
+
+/* =========================
+   3) SPACING / GAP / FONT
+   - exact class selectors
+   ========================= */
+.mg-auto {
+  margin: auto;
+}
+
+@function _as-list($v) {
+  @return if(type-of($v) == "list", $v, ($v));
+}
+
+@mixin scale(
+  $prefix,
+  $properties,
+  $max: 100,
+  $unit: px,
+  $step: 2,
+  $include1: true
+) {
+  $props: _as-list($properties);
+
+  .#{$prefix}0 {
+    @each $prop in $props {
+      #{$prop}: 0#{$unit};
+    }
+  }
+
+  @if $include1 {
+    .#{$prefix}1 {
+      @each $prop in $props {
+        #{$prop}: 1#{$unit};
+      }
+    }
+  }
+
+  $n: 2;
+  @while $n <= $max {
+    .#{$prefix}#{$n} {
+      @each $prop in $props {
+        #{$prop}: #{$n}#{$unit};
+      }
+    }
+    $n: $n + $step;
+  }
+}
+
+/* spacing */
+@include scale("amg", margin);
+@include scale("mgt", margin-top);
+@include scale("mgb", margin-bottom);
+@include scale("mgl", margin-left);
+@include scale("mgr", margin-right);
+@include scale("mgx", margin-inline);
+@include scale("mgy", margin-block);
+
+@include scale("apd", padding);
+@include scale("pdt", padding-top);
+@include scale("pdb", padding-bottom);
+@include scale("pdl", padding-left);
+@include scale("pdr", padding-right);
+@include scale("pdx", padding-inline);
+@include scale("pdy", padding-block);
+
+/* gap */
+@include scale("agp", gap, 100, px, 2, false);
+@include scale("xgp", column-gap, 100, px, 2, false);
+@include scale("ygp", row-gap, 100, px, 2, false);
+
+/* font-size (+ line variant) */
+@mixin font-scale(
+  $prefix,
+  $property,
+  $max: 80,
+  $unit: px,
+  $step: 2,
+  $start: 10
+) {
+  .#{$prefix}0 {
+    #{$property}: 0#{$unit};
+  }
+
+  $n: $start;
+  @while $n <= $max {
+    .#{$prefix}#{$n} {
+      #{$property}: #{$n}#{$unit};
+    }
+    .#{$prefix}#{$n}-line {
+      #{$property}: #{$n}#{$unit};
+      line-height: 1.5em;
+    }
+    $n: $n + $step;
+  }
+}
+
+@include font-scale("fs", font-size, 64);
+
+/* font-weight */
+@for $i from 1 through 9 {
+  $w: $i * 100;
+  .fw#{$w} {
+    font-weight: $w;
+  }
+}
+
+/* =========================
+   4) LAYOUT UTILITIES
+   ========================= */
+.rel {
+  position: relative;
+}
+
+/* flex (contains 제거 버전) */
+.flx {
+  display: flex;
+}
+.flx-btw {
+  justify-content: space-between;
+}
+.flx-ct {
+  justify-content: center;
+}
+.flx-ed {
+  justify-content: flex-end;
+}
+.flx-ved {
+  align-items: flex-end;
+}
+.flx-vct {
+  align-items: center;
+}
+.flx-all-ct {
+  justify-content: center;
+  align-items: center;
+}
+.flx-wrap {
+  flex-wrap: wrap;
+}
+
+/* grid */
+.grid {
+  display: grid;
+}
+
+$grid-min: 2;
+$grid-max: 12;
+
+@for $n from $grid-min through $grid-max {
+  .grid--1-#{$n} {
+    grid-template-columns: repeat(#{$n}, minmax(0, 1fr));
+  }
+
+  @if $n > 2 {
+    @for $k from 2 through ($n - 1) {
+      .grid--#{$k}-#{$n} {
+        grid-template-columns: #{$k}fr #{($n - $k)}fr;
+      }
+    }
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gray100);
+  margin: 0;
+
+  &.line1 {
+    border-width: 1px;
+  }
+  &.line2 {
+    border-width: 2px;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.vh-full {
+  height: 100vh;
+}
+.hmin-full {
+  min-height: 100vh;
+}
+.center {
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.elps {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.elps-2 {
+  -webkit-line-clamp: 2;
+}
+.elps-3 {
+  -webkit-line-clamp: 3;
+}
+
+.fx1 {
+  flex: 1;
+}
+.fx2 {
+  flex: 2;
+}
+.fx3 {
+  flex: 3;
+}
