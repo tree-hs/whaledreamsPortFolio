@@ -65,6 +65,10 @@ function AboutSection() {
             </colgroup>
             <tbody>
               <tr>
+                <th>이름</th>
+                <td>정한석</td>
+              </tr>
+              <tr>
                 <th>생년월일</th>
                 <td>1991-07-03</td>
               </tr>
