@@ -64,18 +64,30 @@ function AboutSection() {
               <col style={{ width: "70%" }} />
             </colgroup>
             <tbody>
-            <tr>
-              <th>연락처</th>
-              <td>010-3268-2612</td>
-            </tr>
-            <tr>
-              <th>홈페이지</th>
-              <td><a href="https://whaledreams.co.kr" target="_blank" rel="noopener noreferrer">https://whaledreams.co.kr</a></td>
-            </tr>
-            <tr>
-              <th>포트폴리오</th>
-              <td><a href="https://tree-hs.github.io/whaledreamsPortFolio/" target="_blank" rel="noopener noreferrer">https://tree-hs.github.io/whaledreamsPortFolio/</a></td>
-            </tr>
+              <tr>
+                <th>생년월일</th>
+                <td>1991-07-03</td>
+              </tr>
+              <tr>
+                <th>이메일</th>
+                <td>harrison14@naver.com</td>
+              </tr>
+              <tr>
+                <th>학력</th>
+                <td>서일대 졸업</td>
+              </tr>
+              <tr>
+                <th>연락처</th>
+                <td>010-3268-2612</td>
+              </tr>
+              <tr>
+                <th>홈페이지</th>
+                <td><a href="https://whaledreams.co.kr" target="_blank" rel="noopener noreferrer">https://whaledreams.co.kr</a></td>
+              </tr>
+              <tr>
+                <th>포트폴리오</th>
+                <td><a href="https://tree-hs.github.io/whaledreamsPortFolio/" target="_blank" rel="noopener noreferrer">https://tree-hs.github.io/whaledreamsPortFolio/</a></td>
+              </tr>
             </tbody>
           </table>
           <a href="#projects" className="about__cta">
